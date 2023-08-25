@@ -79,3 +79,17 @@ func StringToInt64(parCadena string) (int64, error) {
 
 	return auxNumero, err
 }
+
+func InterfaceToInt64(parInterface interface{}) (int64, error) {
+
+	switch parInterface := parInterface.(type) { // This is a type switch.
+	case int64:
+		return parInterface, nil // All done if we got an int64.
+	case int:
+		return int64(parInterface), nil // This uses a conversion from int to int64
+	case string:
+		return strconv.ParseInt(parInterface, 10, 64)
+	default:
+		return 0, fmt.Errorf("Tipo %T no soportada", parInterface)
+	}
+}
