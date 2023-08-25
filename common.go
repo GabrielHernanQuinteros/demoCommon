@@ -85,6 +85,8 @@ func InterfaceToInt64(parInterface interface{}) (int64, error) {
 	switch parInterface := parInterface.(type) { // This is a type switch.
 	case int64:
 		return parInterface, nil // All done if we got an int64.
+	case float64:
+		return int64(parInterface), nil // All done if we got an int64.
 	case int:
 		return int64(parInterface), nil // This uses a conversion from int to int64
 	case string:
